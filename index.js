@@ -13,7 +13,7 @@ module.exports = function(dir_name){
 			next();
 		}
 	});
-	app.use(serveStatic(dir_name, {'index':'default.html'}));
+	app.use(serveStatic(dir_name));
 
 	return app;
 }
