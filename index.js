@@ -1,10 +1,14 @@
 var connect = require('connect');
 var serveStatic = require('serve-static');
 var makeJade = require('./lib/processor/jade');
+var makeLess = require('./lib/processor/less');
+var makeRoot = require('./lib/processor/root');
 
 module.exports = function(dir_name){
 	var app = connect();
 	app
+	  .use(makeRoot())
+	  .use(makeLess(dir_name))
 	  .use(makeJade(dir_name))
 	  .use(function(req,res,next){
 		if (req.url === '/current-time'){
